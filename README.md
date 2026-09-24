@@ -13,4 +13,10 @@ Para utilizar esta librería en cualquiera de tus proyectos, simplemente descarg
 
 ```html
 <script src="js/utileria.js"></script>
+
+o
+
+<head>
+  <script src="js/utileria.js"></script>
+</head>
 ```
