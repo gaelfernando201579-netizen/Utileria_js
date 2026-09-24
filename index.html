@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Utilería JS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="img/image.png">
+</head>
+<body>
+    <div class="container">
+        <h2>Registro de Usuario</h2>
+        <form id="registroForm">
+            <div class="form-group">
+                <label for="nombre">Nombre Completo</label>
+                <input type="text" id="nombre" placeholder="Ej. Juan Pérez">
+                <div id="errorNombre" class="error-msg">Debe contener solo letras.</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefono">Teléfono (Máx 10 dígitos)</label>
+                <input type="text" id="telefono" placeholder="Ej. 9511234567">
+                <div id="errorTelefono" class="error-msg">Debe ser numérico y de máximo 10 dígitos.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                <input type="date" id="fechaNacimiento">
+                <div id="errorFecha" class="error-msg">Debe ser mayor de edad para registrarse.</div>
+            </div>
+
+            <button type="submit">Registrar y Calcular Edad</button>
+        </form>
+        <div class="links">
+            <a href="login.html">Ir al Login</a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="miModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h3 id="modalTitulo">Registro Exitoso</h3>
+            <p id="modalMensaje"></p>
+        </div>
+    </div>
+
+    <!-- Carga de librería JS -->
+    <script src="js/utileria.js"></script>
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener y limpiar valores
+            const nombre = limpiarTexto(document.getElementById('nombre').value);
+            const telefono = document.getElementById('telefono').value;
+            const fecha = document.getElementById('fechaNacimiento').value;
+
+            // Elementos de error
+            const errNombre = document.getElementById('errorNombre');
+            const errTelefono = document.getElementById('errorTelefono');
+            const errFecha = document.getElementById('errorFecha');
+
+            let esValido = true;
+
+            // Validaciones con la librería utileria.js
+            if (!soloLetras(nombre)) { 
+                errNombre.style.display = 'block'; 
+                esValido = false; 
+            } else { 
+                errNombre.style.display = 'none'; 
+            }
+
+            if (!validarLongitud(telefono, 10)) { 
+                errTelefono.style.display = 'block'; 
+                esValido = false; 
+            } else { 
+                errTelefono.style.display = 'none'; 
+            }
+
+            if (!fecha || !esMayorDeEdad(fecha)) { 
+                errFecha.style.display = 'block'; 
+                esValido = false; 
+            } else { 
+                errFecha.style.display = 'none'; 
+            }
+
+            if (esValido) {
+                const edad = calcularEdad(fecha);
+                const telFormateado = formatearTelefonoMX(telefono);
+                
+                // Mostrar resultados en la Modal
+                document.getElementById('modalMensaje').innerHTML = 
+                    `Hola <strong>${nombre}</strong>.<br><br>
+                    Tienes <strong>${edad} años</strong> (Eres mayor de edad).<br><br>
+                    Teléfono guardado: ${telFormateado}`;
+                
+                document.getElementById('miModal').style.display = 'block';
+            }
+        });
+
+        // Cerrar Modal
+        document.getElementById('closeModal').onclick = function() {
+            document.getElementById('miModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
