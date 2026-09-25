@@ -49,7 +49,7 @@ o
 
 ## Video Demostrativo
 
-[![Ver Demo](https://img.youtube.com/vi/kSv6qlPtvR0/maxresdefault.jpg)](https://www.youtube.com/watch?v=kSv6qlPtvR0)
+[![Ver Demo](https://youtu.be/MP6Sz0VIzWI)](https://youtu.be/MP6Sz0VIzWI)
 
 ## Índice
 
