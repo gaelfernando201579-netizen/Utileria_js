@@ -53,17 +53,14 @@ o
 
 ## Índice
 
-- [Funciones Obligatorias](#-funciones-obligatorias)
+- [Funciones Obligatorias](#funciones-obligatorias)
   1. [`validarCorreo(correo)`](#1-validarcorreocorreo)
   2. [`soloLetras(texto)`](#2-sololetrastexto)
   3. [`validarLongitud(numero, maxLongitud)`](#3-validarlongitudnumero-maxlongitud)
-  4. [`calcularEdad(fechaNacimiento)`](#4-calculaRedadfechanacimiento)
+  4. [`calcularEdad(fechaNacimiento)`](#4-calcularedadfechanacimiento)
   5. [`esMayorDeEdad(fechaNacimiento)`](#5-esmayordeedadfechanacimiento)
   6. [`validarPassword(password)`](#6-validarpasswordpassword)
-- [Funciones Adicionales](#-funciones-adicionales) 7. [`formatearTelefonoMX(telefono)`](#7-formateartelefonomxtelefono) 8. [`limpiarTexto(texto)`](#8-limpiartextotexto)
-- [Uso](#-uso)
-- [Buenas prácticas](#-buenas-prácticas)
-- [Licencia](#-licencia)
+- [Funciones Adicionales](#funciones-adicionales) 7. [`formatearTelefonoMX(telefono)`](#7-formateartelefonomxtelefono) 8. [`limpiarTexto(texto)`](#8-limpiartextotexto)
 
 ---
 
@@ -105,11 +102,11 @@ function validarCorreo(correo) {
 **Ejemplos:**
 
 ```javascript
-validarCorreo("usuario@dominio.com"); // ✅ true
-validarCorreo("a@b.co"); // ✅ true
-validarCorreo("sin-arroba.com"); // ❌ false
-validarCorreo("usuario@dominio"); // ❌ false (falta TLD)
-validarCorreo("usuario @dominio.com"); // ❌ false (espacio)
+validarCorreo("usuario@dominio.com"); // true
+validarCorreo("a@b.co"); // true
+validarCorreo("sin-arroba.com"); // false
+validarCorreo("usuario@dominio"); // false (falta TLD)
+validarCorreo("usuario @dominio.com"); // false (espacio)
 ```
 
 ---
@@ -150,13 +147,13 @@ function soloLetras(texto) {
 **Ejemplos:**
 
 ```javascript
-soloLetras("Juan Pérez"); // ✅ true
-soloLetras("María José"); // ✅ true
-soloLetras("Muñoz"); // ✅ true
-soloLetras("Juan123"); // ❌ false (contiene números)
-soloLetras("Juan-Pérez"); // ❌ false (guion no permitido)
-soloLetras("   "); // ❌ false (solo espacios)
-soloLetras(""); // ❌ false (vacío)
+soloLetras("Juan Pérez"); // true
+soloLetras("María José"); // true
+soloLetras("Muñoz"); // true
+soloLetras("Juan123"); // false (contiene números)
+soloLetras("Juan-Pérez"); // false (guion no permitido)
+soloLetras("   "); // false (solo espacios)
+soloLetras(""); // false (vacío)
 ```
 
 ---
@@ -193,13 +190,13 @@ function validarLongitud(numero, maxLongitud) {
 **Ejemplos:**
 
 ```javascript
-validarLongitud("12345", 5); // ✅ true  (5 dígitos, límite 5)
-validarLongitud("123456", 5); // ❌ false (6 dígitos > 5)
-validarLongitud(123, 5); // ✅ true  (number → string)
-validarLongitud("12a45", 5); // ❌ false (contiene letra)
-validarLongitud("-123", 5); // ❌ false (signo negativo no permitido)
-validarLongitud("12.5", 5); // ❌ false (punto decimal no permitido)
-validarLongitud("", 5); // ❌ false (vacío)
+validarLongitud("12345", 5); // true  (5 dígitos, límite 5)
+validarLongitud("123456", 5); // false (6 dígitos > 5)
+validarLongitud(123, 5); // true  (number → string)
+validarLongitud("12a45", 5); // false (contiene letra)
+validarLongitud("-123", 5); // false (signo negativo no permitido)
+validarLongitud("12.5", 5); // false (punto decimal no permitido)
+validarLongitud("", 5); // false (vacío)
 ```
 
 ---
@@ -247,9 +244,9 @@ function calcularEdad(fechaNacimiento) {
 **Ejemplos:**
 
 ```javascript
-calcularEdad("2000-05-15"); // ✅ número entero (ej. 24, 25, ...)
-calcularEdad("2010-12-31"); // ✅ edad según el día actual
-calcularEdad("1990-01-01"); // ✅ persona adulta
+calcularEdad("2000-05-15"); // número entero (ej. 24, 25, ...)
+calcularEdad("2010-12-31"); // edad según el día actual
+calcularEdad("1990-01-01"); // persona adulta
 ```
 
 ---
@@ -281,8 +278,8 @@ Reutiliza `calcularEdad` y compara el resultado con `18`. Es un wrapper de conve
 **Ejemplos:**
 
 ```javascript
-esMayorDeEdad("2000-05-15"); // ✅ true
-esMayorDeEdad("2015-08-20"); // ❌ false (menor)
+esMayorDeEdad("2000-05-15"); // true
+esMayorDeEdad("2015-08-20"); // false (menor)
 ```
 
 ---
@@ -324,12 +321,12 @@ function validarPassword(password) {
 **Ejemplos:**
 
 ```javascript
-validarPassword("Abc123!x"); // ✅ true
-validarPassword("Abc1!"); // ❌ false (menos de 8)
-validarPassword("abcdefg1!"); // ❌ false (sin mayúscula)
-validarPassword("ABCDEFG1!"); // ❌ false (sin minúscula)
-validarPassword("Abcdefgh!"); // ❌ false (sin número)
-validarPassword("Abcdefg1"); // ❌ false (sin especial)
+validarPassword("Abc123!x"); // true
+validarPassword("Abc1!"); // false (menos de 8)
+validarPassword("abcdefg1!"); // false (sin mayúscula)
+validarPassword("ABCDEFG1!"); // false (sin minúscula)
+validarPassword("Abcdefgh!"); // false (sin número)
+validarPassword("Abcdefg1"); // false (sin especial)
 ```
 
 ---
